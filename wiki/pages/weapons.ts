@@ -2,23 +2,38 @@ import { html } from "ssg/util";
 import { createPage, createStatsTable } from "../ssg/generate";
 import { Guns } from "@definitions/guns";
 import { renderMarkdown } from "ssg/markdown";
+import { Melees } from "@definitions/melees";
+import { Throwables } from "@definitions/throwables";
 
 export async function createWeaponPages() {
   await createPage(`/special/weapons`, {
     title: "Weapons",
     content: html`
-      <h2>Guns</h2>
-      <ul>
-        ${Guns.definitions
-          .map(
-            (gun) => html`
-              <li>
-                <a href="/wiki/${gun.idString}">${gun.name}</a>
-              </li>
-            `
-          )
-          .join("")}
-      </ul>
+      ${await renderMarkdown("weapons.md", {
+        replace: [
+          ["<guns>", Guns.definitions.length.toString()],
+          ["<guns-list>", Guns
+            .definitions.map(gun => 
+
+              `- [${gun.name}](/wiki/${gun.idString})`
+
+            ).join("\n")],
+
+          ["<melees>", Melees.definitions.length.toString()],
+          ["<melees-list>", Melees.definitions.map(melee => 
+
+            `- [${melee.name}](/wiki/${melee.idString})`
+
+          ).join("\n")],
+
+          ["<throwables>", Throwables.definitions.length.toString()],
+          ["<throwables-list>", Throwables.definitions.map(throwable => 
+
+            `- [${throwable.name}](/wiki/${throwable.idString})`
+
+          ).join("\n")]
+        ]
+      }) ?? ""}
     `,
   });
 
@@ -57,5 +72,44 @@ export async function createWeaponPages() {
         </div>
       `,
     });
+  }
+
+  for (const melee of Melees.definitions) {
+    await createPage(`/wiki/${melee.idString}`, {
+      title: melee.name,
+      content: html`
+        <div class="columns is-desktop">
+          <article class="column is-two-thirds">
+            ${(await renderMarkdown(`melees/${melee.idString}.md`)) ??
+            "No content exists"}
+          </article>
+          ${createStatsTable([
+            ["Loot Image", html`<img src="/img/game/weapons/${melee.idString}.svg" />`],
+            ["ID String", html`<code>${melee.idString}</code>`],
+            ["Damage", melee.damage.toString()],
+            ["Cooldown", melee.cooldown.toString() + " milliseconds"],
+            ["Obstacle Damage Multiplyer", "x" + melee.obstacleMultiplier.toString()]
+          ])}
+        </div>
+      `
+    })
+  }
+
+  for (const throwable of Throwables.definitions) {
+    await createPage(`/wiki/${throwable.idString}`, {
+      title: throwable.name,
+      content: html`
+        <div class="columns is-desktop">
+          <article class="column is-two-thirds">
+            ${(await renderMarkdown(`throwables/${throwable.idString}.md`)) ??
+            "No content exists"}
+          </article>
+          ${createStatsTable([
+            ["Loot Image", html`<img src="/img/game/weapons/${throwable.idString}.svg" />`],
+            ["ID String", html`<code>${throwable.idString}</code>`],
+          ])}
+        </div>
+      `
+    })
   }
 }

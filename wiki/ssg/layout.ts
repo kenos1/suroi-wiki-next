@@ -20,7 +20,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
       </head>
       <body>
         ${SearchModal()} ${NavBar()}
-        <section style="min-height: 100vh">
+        <section style="min-height: 100vh" class="block">
           <div class="container">
             <div class="content">
               <h1>${options.contentTitle ?? options.title}</h1>
