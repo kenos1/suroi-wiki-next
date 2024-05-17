@@ -4,8 +4,8 @@ Suroi is an open-source 2D battle royale game inspired by surviv.io.
 
 ## Links
 
-- [Game Source Code](https://github.com/hasangergames/suroi)
-- [Discord](https://discord.suroi.io)
+- [<iconify-icon icon="mdi:github"></iconify-icon> Game Source Code](https://github.com/hasangergames/suroi)
+- [<iconify-icon icon="ic:baseline-discord"></iconify-icon> Discord](https://discord.suroi.io)
 
 ## Contributing
 
