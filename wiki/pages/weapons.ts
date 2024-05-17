@@ -28,7 +28,7 @@ export async function createWeaponPages() {
       content: html`
         <div class="columns is-desktop">
           <article class="column is-two-thirds">
-            ${await renderMarkdown(`guns/${gun.idString}.md`)}
+            ${await renderMarkdown(`guns/${gun.idString}.md`) ?? "No content exists"}
           </article>
           <table class="column">
             <thead>

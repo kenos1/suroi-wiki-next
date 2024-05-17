@@ -9,7 +9,7 @@ const markdownIt = MarkdownIt({
 });
 
 export async function renderMarkdown(path: string) {
-  if (!existsSync(Path.join("./content", path))) return "";
+  if (!existsSync(Path.join("./content", path))) return;
   return markdownIt.render(
     await readFile(Path.join("./content", path), { encoding: "utf8" })
   );

@@ -18,7 +18,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
         <title>Suroi Wiki | ${options.title}</title>
       </head>
       <body>
-        ${NavBar()}
+        ${SearchModal()} ${NavBar()}
         <section>
           <div class="container">
             <div class="content">
@@ -35,7 +35,11 @@ export async function WikiLayout(options: WikiLayoutOptions) {
 
 function NavBar() {
   return html`
-    <nav class="navbar container block" role="navigation" aria-label="main navigation">
+    <nav
+      class="navbar container block"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img src="/wiki.svg" />
@@ -57,10 +61,35 @@ function NavBar() {
 
         <div class="navbar-end">
           <div class="navbar-item control">
-            <input id="search-bar" class="input" type="text" placeholder="Search">
+            <input
+              id="search-button"
+              class="input"
+              type="text"
+              placeholder="Search"
+            />
           </div>
         </div>
       </div>
     </nav>
   `;
+}
+
+function SearchModal() {
+  return html`<div id="search-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <input
+        id="search-bar"
+        class="input block"
+        type="text"
+        placeholder="Search here"
+      />
+      <div class="menu block">
+        <p class="menu-label">Results</p>
+        <ul class="menu-list" id="search-results">
+          <li>No Results Found.</li>
+        </ul>
+      </div>
+    </div>
+  </div>`;
 }

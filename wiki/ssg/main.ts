@@ -2,6 +2,7 @@ import { copyFile, cp, rmdir } from "fs/promises";
 import { createWeaponPages } from "pages/weapons";
 import { createHomePage } from "pages/home";
 import { build as bundleJS } from "esbuild"
+import { createRoutesFile } from "./generate";
 
 (async () => {
   try {
@@ -15,6 +16,8 @@ import { build as bundleJS } from "esbuild"
     outdir: "./dist",
     bundle: true
   })
-  createHomePage();
-  createWeaponPages();
+  await createHomePage();
+  await createWeaponPages();
+
+  await createRoutesFile()
 })();
