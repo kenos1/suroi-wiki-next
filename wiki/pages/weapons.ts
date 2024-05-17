@@ -46,7 +46,7 @@ export async function createWeaponPages() {
             ["Switch Delay", gun.switchDelay.toString() + " milliseconds"],
             ["Holding Speed Multiplyer", "x" + gun.speedMultiplier.toString()],
             ["Recoil Speed Multiplyer", "x" + gun.recoilMultiplier.toString()],
-            ["Recoil Duration", gun.recoilDuration.toString + " milliseconds"],
+            ["Recoil Duration", gun.recoilDuration.toString() + " milliseconds"],
 
             "Ballistics",
             ["Damage", gun.ballistics.damage.toString()],
