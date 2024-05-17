@@ -1,3 +1,4 @@
+import { readFile } from "fs/promises";
 import { html } from "./util";
 
 export type WikiLayoutOptions = {
@@ -19,7 +20,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
       </head>
       <body>
         ${SearchModal()} ${NavBar()}
-        <section>
+        <section style="min-height: 100vh">
           <div class="container">
             <div class="content">
               <h1>${options.contentTitle ?? options.title}</h1>
@@ -27,6 +28,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
             </div>
           </div>
         </section>
+        ${await Footer()}
         <script src="/main.js"></script>
       </body>
     </html>
@@ -71,6 +73,22 @@ function NavBar() {
         </div>
       </div>
     </nav>
+  `;
+}
+
+
+const buildDate = new Date().toUTCString()
+const commit = readFile("../.git/ORIG_HEAD", {encoding: "utf-8"})
+
+async function Footer() {
+  return html`
+    <footer class="footer">
+      <div class="container">
+        <p>Offical Suroi Wiki</p>
+        <p>Built on ${buildDate}</p>
+        <p>Information generated on commit ${await commit}</p>
+      </div>
+    </footer>
   `;
 }
 
