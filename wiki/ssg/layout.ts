@@ -45,7 +45,7 @@ function NavBar() {
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img src="/wiki.svg" />
-          <span>Suroi Wiki</span>
+          <span style="margin-left: 1ch">Suroi Wiki</span>
         </a>
       </div>
 
