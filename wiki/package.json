@@ -1,0 +1,19 @@
+{
+  "name": "wiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsx ssg/main.ts",
+    "serve": "http-server dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "http-server": "^14.1.1",
+    "tsx": "^4.10.4",
+    "typescript": "^5.4.5"
+  }
+}
