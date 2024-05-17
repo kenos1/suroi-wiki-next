@@ -27,6 +27,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
             </div>
           </div>
         </section>
+        <script src="/main.js"></script>
       </body>
     </html>
   `;
@@ -42,7 +43,7 @@ function NavBar() {
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-menu">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Pages</a>
@@ -56,7 +57,7 @@ function NavBar() {
 
         <div class="navbar-end">
           <div class="navbar-item control">
-            <input class="input" type="text" placeholder="Search">
+            <input id="search-bar" class="input" type="text" placeholder="Search">
           </div>
         </div>
       </div>
