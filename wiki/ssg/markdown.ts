@@ -3,6 +3,8 @@ import { readFile } from "fs/promises";
 import MarkdownIt from "markdown-it";
 import MarkdownItAnchor from "markdown-it-anchor";
 import Path from "path";
+import { createPage } from "./generate";
+import { html } from "./util";
 
 const markdownIt = MarkdownIt({
   html: true,
@@ -26,4 +28,24 @@ export async function renderMarkdown(
     });
   }
   return markdownIt.render(file);
+}
+
+export async function createItemArticle(options: {
+  path: string,
+  title: string,
+  markdownPath: string,
+  sidebar: string,
+}) {
+  return await createPage(`/wiki/${options.path}`, {
+      title: options.title,
+      content: html`
+        <div class="columns is-desktop">
+          <article class="column is-two-thirds">
+            ${(await renderMarkdown(`${options.markdownPath}.md`)) ??
+            html`<div class="notification is-danger">No Written Article Found.</div>`}
+          </article>
+          ${options.sidebar}
+        </div>
+      `
+    })
 }
