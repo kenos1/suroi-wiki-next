@@ -50,10 +50,15 @@ import { html } from "ssg/util";
     searchBar.focus();
   });
 
-  window.addEventListener("keypress", (e) => {
-    if (e.key === "k" && e.ctrlKey) {
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "/" && e.ctrlKey) {
       e.preventDefault();
       searchModal.classList.add("is-active");
+      searchBar.focus();
+    }
+    if (e.key === "Escape") {
+      searchModal.classList.remove("is-active");
+      searchBar.value = "";
     }
   });
 })();
