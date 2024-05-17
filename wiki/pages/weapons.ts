@@ -1,6 +1,7 @@
 import { html } from "ssg/util";
 import { createPage } from "../ssg/generate";
 import { Guns } from "@definitions/guns";
+import { renderMarkdown } from "ssg/markdown";
 
 export async function createWeaponPages() {
   await createPage(`/special/weapons`, {
@@ -37,7 +38,9 @@ export async function createWeaponPages() {
             </tr>
             <tr>
               <td>World Image</td>
-              <td><img src="/img/game/weapons/${gun.idString}_world.svg" /></td>
+              <td>
+                <img src="/img/game/weapons/${gun.idString}_world.svg" />
+              </td>
             </tr>
             <tr>
               <td>Name</td>
@@ -113,6 +116,9 @@ export async function createWeaponPages() {
             </tr>
           </tbody>
         </table>
+        <article class="block">
+          ${await renderMarkdown(`guns/${gun.idString}.md`)}
+        </article>
       `,
     });
   }
