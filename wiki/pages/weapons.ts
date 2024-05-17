@@ -2,7 +2,21 @@ import { html } from "ssg/util";
 import { createPage } from "../ssg/generate";
 import { Guns } from "@definitions/guns";
 
-export async function createGunPages() {
+export async function createWeaponPages() {
+  await createPage(`/special/weapons`, {
+    title: "Weapons",
+    content: html`
+      <h2>Guns</h2>
+      <ul>
+        ${Guns.definitions.map(gun => html`
+          <li>
+            <a href="/wiki/${gun.idString}">${gun.name}</a>
+          </li>
+        `).join("")}
+      </ul>
+    `
+  })
+
   for (const gun of Guns.definitions) {
     await createPage(`/wiki/${gun.idString}`, {
       title: gun.name,
