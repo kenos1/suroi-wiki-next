@@ -5,6 +5,13 @@ import { createItemArticle, renderMarkdown } from "ssg/markdown";
 import { Melees } from "@definitions/melees";
 import { Throwables } from "@definitions/throwables";
 
+function weaponGridItem(id: string, name: string) {
+  return html`<a href="/wiki/${id}">
+    <img src="/img/game/weapons/${id}.svg" class="icon" />
+    ${name}
+  </a>`;
+}
+
 export async function createWeaponPages() {
   await createPage(`/special/weapons`, {
     title: "Weapons",
@@ -16,9 +23,7 @@ export async function createWeaponPages() {
             "<guns-list>",
             html`<div class="grid">
               ${Guns.definitions
-                .map(
-                  (gun) => html`<a href="/wiki/${gun.idString}">${gun.name}</a>`
-                )
+                .map((gun) => weaponGridItem(gun.idString, gun.name))
                 .join("\n")}
             </div>`,
           ],
@@ -28,10 +33,7 @@ export async function createWeaponPages() {
             "<melees-list>",
             html`<div class="grid">
               ${Melees.definitions
-                .map(
-                  (melee) =>
-                    html`<a href="/wiki/${melee.idString}">${melee.name}</a>`
-                )
+                .map((melee) => weaponGridItem(melee.idString, melee.name))
                 .join("\n")}
             </div>`,
           ],
@@ -41,9 +43,8 @@ export async function createWeaponPages() {
             "<throwables-list>",
             html`<div class="grid">
               ${Throwables.definitions
-                .map(
-                  (throwable) =>
-                    html`<a href="/wiki/${throwable.idString}">${throwable.name}</a>`
+                .map((throwable) =>
+                  weaponGridItem(throwable.idString, throwable.name)
                 )
                 .join("\n")}
             </div>`,
