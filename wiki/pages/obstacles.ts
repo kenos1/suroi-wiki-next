@@ -1,10 +1,35 @@
 import { Obstacles, RotationMode } from "@definitions/obstacles";
-import { createStatsTable } from "ssg/generate";
-import { createItemArticle } from "ssg/markdown";
+import { createPage, createStatsTable } from "ssg/generate";
+import { createItemArticle, renderMarkdown } from "ssg/markdown";
 import { html } from "ssg/util";
 import { range } from "util/arrays";
 
 export async function createObstaclePages() {
+  await createPage("/special/obstacles", {
+    title: "Obstacles",
+    content:
+      (await renderMarkdown("obstacles.md", {
+        replace: [
+          ["<obstacles>", Obstacles.definitions.length.toString()],
+          [
+            "<obstacle-list>",
+            html`
+              <div class="grid">
+                ${Obstacles.definitions
+                  .map(
+                    (obstacle) =>
+                      html`<a href="/wiki/${obstacle.idString}"
+                        >${obstacle.name}</a
+                      >`
+                  )
+                  .join("")}
+              </div>
+            `,
+          ],
+        ],
+      })) ?? "",
+  });
+
   for (const obstacle of Obstacles.definitions) {
     await createItemArticle({
       path: obstacle.idString,
@@ -46,7 +71,7 @@ export async function createObstaclePages() {
             }
           })(obstacle.rotationMode),
         ],
-        (obstacle.reflectBullets ? "Reflects bullets" : undefined)
+        obstacle.reflectBullets ? "Reflects bullets" : undefined,
       ]),
     });
   }
