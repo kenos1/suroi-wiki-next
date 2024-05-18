@@ -31,7 +31,6 @@ As a dev-only weapon, the Revitalizer is only obtainable by Developers. However,
     fixed to the muzzle. Presumably, this device is the cause of the gun's unique properties.
 - The pellets fired from this weapon are always spread out in a uniformly distributed pattern.
 - The effects of the Revitalizer stack if one equips multiple; here's a table showing the various combinations.
-- The max health can calculated using the exponential function $$51 \times 1.488^k$$ where $$k$$ is the amount of kills
 
 <table>
   <thead>

@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/katex": "^0.16.7",
     "@types/node": "^20.12.7",
     "http-server": "^14.1.1",
     "tsx": "^4.10.4",
@@ -24,7 +23,6 @@
     "esbuild": "^0.21.3",
     "fuse.js": "^7.0.0",
     "iconify-icon": "^2.1.0",
-    "katex": "^0.16.10",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.0.1",
     "sass-embedded": "^1.77.2"
