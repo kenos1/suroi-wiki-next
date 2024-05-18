@@ -96,6 +96,11 @@ export async function createWeaponPages() {
           "Obstacle Damage Multiplyer",
           "x" + gun.ballistics.obstacleMultiplier.toString(),
         ],
+
+        "Sounds",
+        ["Fire", html`<audio controls><source src="/audio/sfx/weapons/${gun.idString}_fire.mp3" type="audio/mpeg"></audio>`],
+        ["Reload", html`<audio controls><source src="/audio/sfx/weapons/${gun.idString}_reload.mp3" type="audio/mpeg"></audio>`],
+        ["Switch", html`<audio controls><source src="/audio/sfx/weapons/${gun.idString}_switch.mp3" type="audio/mpeg"></audio>`]
       ]),
     });
   }

@@ -12,6 +12,7 @@ import { createMarkdownPage } from "./markdown";
     await rmdir("./dist");
   } catch {}
   await cp("../client/public/img/", "./dist/img", { recursive: true });
+  await cp("../client/public/audio/", "./dist/audio", { recursive: true });
   await cp("./public", "./dist/", { recursive: true });
   await bundleJS({
     entryPoints: ["./scripts/main.ts"],
