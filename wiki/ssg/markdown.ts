@@ -30,6 +30,13 @@ export async function renderMarkdown(
   return markdownIt.render(file);
 }
 
+export async function createMarkdownPage(title: string, path: string, markdownPath: string) {
+  return await createPage(path, {
+    title: title,
+    content: await renderMarkdown(markdownPath) ?? html`<div class="notification is-danger">No Article Found.</div>`
+  })
+}
+
 export async function createItemArticle(options: {
   path: string,
   title: string,

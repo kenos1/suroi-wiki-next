@@ -23,7 +23,7 @@ export async function createPage(path: string, options: WikiLayoutOptions) {
   });
 }
 
-export function createStatsTable(information: ([string, string] | string)[]) {
+export function createStatsTable(information: ([string, string] | string | undefined)[]) {
   return html`
     <table class="column">
       <thead>
@@ -32,6 +32,7 @@ export function createStatsTable(information: ([string, string] | string)[]) {
       </thead>
       <tbody>
         ${information.map(row => {
+          if (!row) return ``;
           switch (typeof(row)) {
             case "string":
               return html`<tr>

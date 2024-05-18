@@ -49,6 +49,13 @@ import { html } from "ssg/util";
     searchModal.classList.add("is-active");
     searchBar.focus();
   });
+  (
+    document.getElementById("mobile-search-button") as HTMLButtonElement
+  ).addEventListener("click", (e) => {
+    (e.target as HTMLInputElement).value = "";
+    searchModal.classList.add("is-active");
+    searchBar.focus();
+  });
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "/" && e.ctrlKey) {

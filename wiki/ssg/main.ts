@@ -1,9 +1,11 @@
 import { copyFile, cp, rmdir, writeFile } from "fs/promises";
 import { createWeaponPages } from "pages/weapons";
 import { createHomePage } from "pages/home";
+import { createObstaclePages } from "pages/obstacles"
 import { build as bundleJS } from "esbuild"
 import { compileAsync as bundleCSS } from "sass-embedded";
 import { createRoutesFile } from "./generate";
+import { createMarkdownPage } from "./markdown";
 
 (async () => {
   try {
@@ -18,7 +20,9 @@ import { createRoutesFile } from "./generate";
   })
   await writeFile("./dist/style.css", (await bundleCSS("./styles/style.scss", {loadPaths: ["node_modules"]})).css)
   await createHomePage();
+  await createMarkdownPage("Frequently Asked Questions", "/special/faq", "faq.md")
   await createWeaponPages();
+  await createObstaclePages();
 
   await createRoutesFile()
 })();

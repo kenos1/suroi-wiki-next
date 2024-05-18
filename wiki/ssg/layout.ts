@@ -47,16 +47,18 @@ function NavBar() {
           <img src="/wiki.svg" />
           <span style="margin-left: 1ch">Suroi Wiki</span>
         </a>
+
+        <button id="mobile-search-button" class="navbar-burger"><iconify-icon class="icon" icon="mdi:magnify"></iconify-icon></button>
       </div>
 
       <div class="navbar-menu">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Pages</a>
-
             <div class="navbar-dropdown">
               <a class="navbar-item" href="/">Home</a>
               <a class="navbar-item" href="/special/weapons">Weapons</a>
+              <a class="navbar-item" href="/special/faq">Frequently Asked Questions</a>
             </div>
           </div>
         </div>
