@@ -14,28 +14,39 @@ export async function createWeaponPages() {
           ["<guns>", Guns.definitions.length.toString()],
           [
             "<guns-list>",
-            Guns.definitions
-              .map((gun) => `- [${gun.name}](/wiki/${gun.idString})`)
-              .join("\n"),
+            html`<div class="grid">
+              ${Guns.definitions
+                .map(
+                  (gun) => html`<a href="/wiki/${gun.idString}">${gun.name}</a>`
+                )
+                .join("\n")}
+            </div>`,
           ],
 
           ["<melees>", Melees.definitions.length.toString()],
           [
             "<melees-list>",
-            Melees.definitions
-              .map((melee) => `- [${melee.name}](/wiki/${melee.idString})`)
-              .join("\n"),
+            html`<div class="grid">
+              ${Melees.definitions
+                .map(
+                  (melee) =>
+                    html`<a href="/wiki/${melee.idString}">${melee.name}</a>`
+                )
+                .join("\n")}
+            </div>`,
           ],
 
           ["<throwables>", Throwables.definitions.length.toString()],
           [
             "<throwables-list>",
-            Throwables.definitions
-              .map(
-                (throwable) =>
-                  `- [${throwable.name}](/wiki/${throwable.idString})`
-              )
-              .join("\n"),
+            html`<div class="grid">
+              ${Throwables.definitions
+                .map(
+                  (throwable) =>
+                    html`<a href="/wiki/${throwable.idString}">${throwable.name}</a>`
+                )
+                .join("\n")}
+            </div>`,
           ],
         ],
       })) ?? ""}
