@@ -18,7 +18,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <title>Suroi Wiki | ${options.title}</title>
       </head>
-      <body>
+      <body class="theme-dark">
         ${SearchModal()} ${NavBar()}
         <section style="min-height: 100vh" class="block">
           <div class="container">

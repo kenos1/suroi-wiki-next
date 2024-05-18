@@ -11,7 +11,6 @@ import { createRoutesFile } from "./generate";
   } catch {}
   await cp("../client/public/img/", "./dist/img", { recursive: true });
   await cp("./public", "./dist/", { recursive: true });
-  //await copyFile("node_modules/bulma/css/bulma.css", "./dist/style.css");
   await bundleJS({
     entryPoints: ["./scripts/main.ts"],
     outdir: "./dist",
