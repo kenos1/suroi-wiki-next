@@ -61,7 +61,24 @@ export async function createItemArticle(options: {
     content: html`
       <div class="columns is-desktop">
         <article class="column is-two-thirds">
-          ${(await renderMarkdown(`${options.markdownPath}`)) ??
+          ${(await renderMarkdown(`${options.markdownPath}`, {
+            replace: [
+              [
+                "<stub>",
+                html`<div class="notification is-warning">
+                  This article is a stub, meaning that there is not enough
+                  written content.
+                </div>`,
+              ],
+              [
+                "<devweapon>",
+                html`<div class="notification is-info">
+                  This is a developer weapon. It can only be accessed by
+                  developers or by playing in special modes.
+                </div>`,
+              ],
+            ],
+          })) ??
           html`<div class="notification is-danger">
             No Written Article Found.
           </div>`}
@@ -78,5 +95,5 @@ async function getDescription(markdownPath: string) {
 
   return (await readFile(path, { encoding: "utf8" }))
     .slice(0, 400)
-    .replaceAll("\"", "&quot;");
+    .replaceAll('"', "&quot;");
 }

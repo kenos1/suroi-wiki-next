@@ -1,10 +1,10 @@
 import { copyFile, cp, rmdir, writeFile } from "fs/promises";
 import { createWeaponPages } from "pages/weapons";
 import { createHomePage } from "pages/home";
-import { createObstaclePages } from "pages/obstacles"
-import { build as bundleJS } from "esbuild"
+import { createObstaclePages } from "pages/obstacles";
+import { build as bundleJS } from "esbuild";
 import { compileAsync as bundleCSS } from "sass-embedded";
-import { createRoutesFile } from "./generate";
+import { createRoutesFile, createWikiPage } from "./generate";
 import { createMarkdownPage } from "./markdown";
 
 (async () => {
@@ -17,13 +17,19 @@ import { createMarkdownPage } from "./markdown";
   await bundleJS({
     entryPoints: ["./scripts/main.ts"],
     outdir: "./dist",
-    bundle: true
-  })
-  await writeFile("./dist/style.css", (await bundleCSS("./styles/style.scss", {loadPaths: ["node_modules"]})).css)
+    bundle: true,
+  });
+  await writeFile(
+    "./dist/style.css",
+    (
+      await bundleCSS("./styles/style.scss", { loadPaths: ["node_modules"] })
+    ).css
+  );
   await createHomePage();
-  await createMarkdownPage("Frequently Asked Questions", "/special/faq", "faq")
+  await createMarkdownPage("Frequently Asked Questions", "/special/faq", "faq");
   await createWeaponPages();
   await createObstaclePages();
 
-  await createRoutesFile()
+  await createWikiPage();
+  await createRoutesFile();
 })();

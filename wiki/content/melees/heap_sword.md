@@ -1,0 +1,3 @@
+<devweapon>
+
+<stub>

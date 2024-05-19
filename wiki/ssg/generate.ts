@@ -60,3 +60,17 @@ export function createStatsTable(information: ([string, string] | string | undef
 export async function createRoutesFile() {
   await writeFile("./dist/routes.json", JSON.stringify(routes));
 }
+
+export async function createWikiPage() {
+  await createPage("/wiki", {
+    content: html`
+      <ul>
+        ${routes.filter(r => r.url.startsWith("/wiki")).map(route => html`
+          <li><a href="${route.url}">${route.title}</a></li>
+        `).join("")}
+      </ul>
+    `,
+    path: "/wiki",
+    title: "Wiki Pages",
+  })
+}
