@@ -5,8 +5,8 @@ on:
   pull_request:
 
 jobs:
-  client:
-    name: Client
+  wiki:
+    name: Wiki
     runs-on: ubuntu-latest
     concurrency: ci-client-${{ github.ref }}
 
@@ -32,90 +32,12 @@ jobs:
       - name: Build
         working-directory: ./client
         run: pnpm build
-
-  server:
-    name: Server
-    runs-on: ubuntu-latest
-    concurrency: ci-server-${{ github.ref }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          version: 9
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-          cache-dependency-path: '**/pnpm-lock.yaml'
-
-      - name: Install Packages
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        working-directory: ./server
-        run: pnpm build
-
-  tests:
-    name: Tests
-    runs-on: ubuntu-latest
-    concurrency: ci-tests-${{ github.ref }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-          cache-dependency-path: '**/pnpm-lock.yaml'
-
-      - name: Install Packages
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        working-directory: ./tests
-        run: pnpm build
-
-      - name: Run Tests
-        working-directory: ./tests
-        run: pnpm validateDefinitions
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    concurrency: ci-lint-${{ github.ref }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-          cache-dependency-path: '**/pnpm-lock.yaml'
-
-      - name: Install Packages
-        working-directory: ./tests
-        run: pnpm install --frozen-lockfile
-
-      - name: Lint
-        run: pnpm test
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
