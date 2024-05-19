@@ -2,10 +2,12 @@ import { mkdir, writeFile } from "fs/promises";
 import Path from "path";
 import { WikiLayout, WikiLayoutOptions } from "./layout";
 import { html } from "./util";
+import { createThumbnail } from "./thumbnail";
 
 export type Route = {
   title: string;
   url: string;
+  thumbnailImage?: string;
 };
 
 let routes: Route[] = [];
@@ -17,10 +19,13 @@ export async function createPage(path: string, options: WikiLayoutOptions) {
     Path.join(buildPath, "index.html"),
     await WikiLayout(options)
   );
-  routes.push({
+  const route: Route = {
     title: options.title,
     url: path,
-  });
+    thumbnailImage: options.thumbnailImage
+  }
+  createThumbnail(route);
+  routes.push(route);
 }
 
 export function createStatsTable(information: ([string, string] | string | undefined)[]) {

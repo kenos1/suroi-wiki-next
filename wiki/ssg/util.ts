@@ -11,3 +11,5 @@ export function html(
     .join("")
     .trim();
 }
+
+export const svg = html

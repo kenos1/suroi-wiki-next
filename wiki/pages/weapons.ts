@@ -58,6 +58,7 @@ export async function createWeaponPages() {
     await createItemArticle({
       title: gun.name,
       path: gun.idString,
+      thumbnail: `./dist/img/game/weapons/${gun.idString}.svg`,
       markdownPath: `guns/${gun.idString}`,
       sidebar: createStatsTable([
         [

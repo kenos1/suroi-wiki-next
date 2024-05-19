@@ -42,9 +42,11 @@ export async function createItemArticle(options: {
   title: string,
   markdownPath: string,
   sidebar: string,
+  thumbnail?: string
 }) {
   return await createPage(`/wiki/${options.path}`, {
       title: options.title,
+      thumbnailImage: options.thumbnail,
       content: html`
         <div class="columns is-desktop">
           <article class="column is-two-thirds">
@@ -53,6 +55,6 @@ export async function createItemArticle(options: {
           </article>
           ${options.sidebar}
         </div>
-      `
+      `,
     })
 }
