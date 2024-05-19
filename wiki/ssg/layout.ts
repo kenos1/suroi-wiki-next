@@ -1,5 +1,6 @@
 import { readFile } from "fs/promises";
 import { html } from "./util";
+import { Config } from "config";
 
 export type WikiLayoutOptions = {
   title: string;
@@ -16,7 +17,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:image" content="${options.path}/thumbnail.png" />
+        <meta property="og:image" content="${Config.url + options.path}/thumbnail.png" />
         <link rel="stylesheet" href="/style.css" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <title>Suroi Wiki | ${options.title}</title>

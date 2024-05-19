@@ -6,6 +6,7 @@ export async function createHomePage() {
   await createPage("/", {
     title: "Home",
     content: await renderMarkdown("home.md") ?? "",
+    path: "/",
     contentTitle: "Suroi Wiki"
   });
 }
