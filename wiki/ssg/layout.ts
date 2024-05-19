@@ -88,7 +88,7 @@ function NavBar() {
 
 
 const buildDate = new Date().toUTCString()
-const commit = readFile("../.git/ORIG_HEAD", {encoding: "utf-8"})
+//const commit = readFile("../.git/ORIG_HEAD", {encoding: "utf-8"})
 
 async function Footer() {
   return html`
@@ -96,7 +96,7 @@ async function Footer() {
       <div class="container">
         <p>Offical Suroi Wiki</p>
         <p>Built on ${buildDate}</p>
-        <p>Information generated on commit ${await commit}</p>
+        ${/*<p>Information generated on commit ${await commit}</p>$*/ ""}
       </div>
     </footer>
   `;
