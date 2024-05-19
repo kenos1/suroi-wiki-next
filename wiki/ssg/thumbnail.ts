@@ -19,7 +19,6 @@ export async function createThumbnail(route: Route) {
       loadSystemFonts: false,
       fontFiles: ["./public/fonts/Inter-Regular.otf"],
     },
-    logLevel: "debug",
   });
 
   await writeFile(

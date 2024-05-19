@@ -4,6 +4,7 @@ import { Config } from "config";
 
 export type WikiLayoutOptions = {
   title: string;
+  description?: string;
   content: string;
   path: string;
   contentTitle?: string;
@@ -17,6 +18,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:description" content="${options.description ?? ""}" />
         <meta property="og:image" content="${Config.url + options.path}/thumbnail.png" />
         <link rel="stylesheet" href="/style.css" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

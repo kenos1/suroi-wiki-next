@@ -17,7 +17,7 @@ export async function createWeaponPages() {
     title: "Weapons",
     path: "/special/weapons",
     content: html`
-      ${(await renderMarkdown("weapons.md", {
+      ${(await renderMarkdown("weapons", {
         replace: [
           ["<guns>", Guns.definitions.length.toString()],
           [

@@ -21,7 +21,7 @@ import { createMarkdownPage } from "./markdown";
   })
   await writeFile("./dist/style.css", (await bundleCSS("./styles/style.scss", {loadPaths: ["node_modules"]})).css)
   await createHomePage();
-  await createMarkdownPage("Frequently Asked Questions", "/special/faq", "faq.md")
+  await createMarkdownPage("Frequently Asked Questions", "/special/faq", "faq")
   await createWeaponPages();
   await createObstaclePages();
 

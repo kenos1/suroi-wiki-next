@@ -9,7 +9,7 @@ export async function createObstaclePages() {
     title: "Obstacles",
     path: "/special/obstacles",
     content:
-      (await renderMarkdown("obstacles.md", {
+      (await renderMarkdown("obstacles", {
         replace: [
           ["<obstacles>", Obstacles.definitions.length.toString()],
           [

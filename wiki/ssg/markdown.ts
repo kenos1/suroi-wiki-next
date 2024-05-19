@@ -19,8 +19,9 @@ export async function renderMarkdown(
   path: string,
   options?: RenderMarkdownOptions
 ) {
-  if (!existsSync(Path.join("./content", path))) return;
-  let file = await readFile(Path.join("./content", path), { encoding: "utf8" });
+  const contentPath = Path.join("./content", path + ".md")
+  if (!existsSync(contentPath)) return;
+  let file = await readFile(contentPath, { encoding: "utf8" });
 
   if (options?.replace) {
     options.replace.forEach((replaceOption) => {
@@ -34,6 +35,7 @@ export async function createMarkdownPage(title: string, path: string, markdownPa
   return await createPage(path, {
     title: title,
     path: path,
+    description: await getDescription(markdownPath),
     content: await renderMarkdown(markdownPath) ?? html`<div class="notification is-danger">No Article Found.</div>`
   })
 }
@@ -49,14 +51,22 @@ export async function createItemArticle(options: {
       title: options.title,
       thumbnailImage: options.thumbnail,
       path: `/wiki/${options.path}`,
+      description: await getDescription(options.markdownPath),
       content: html`
         <div class="columns is-desktop">
           <article class="column is-two-thirds">
-            ${(await renderMarkdown(`${options.markdownPath}.md`)) ??
+            ${(await renderMarkdown(`${options.markdownPath}`)) ??
             html`<div class="notification is-danger">No Written Article Found.</div>`}
           </article>
           ${options.sidebar}
         </div>
       `,
     })
+}
+
+async function getDescription(markdownPath: string) {
+  const path = Path.join("./content", markdownPath + ".md")
+  if (!existsSync(path)) return;
+
+  return encodeURI((await readFile(path, {encoding: "utf8"})).slice(0, 400) + "...")
 }
