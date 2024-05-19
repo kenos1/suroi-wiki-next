@@ -30,7 +30,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        working-directory: ./client
+        working-directory: ./wiki
         run: pnpm build
       - name: Setup Pages
         uses: actions/configure-pages@v4
