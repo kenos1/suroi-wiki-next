@@ -33,6 +33,7 @@ export async function renderMarkdown(
 export async function createMarkdownPage(title: string, path: string, markdownPath: string) {
   return await createPage(path, {
     title: title,
+    path: path,
     content: await renderMarkdown(markdownPath) ?? html`<div class="notification is-danger">No Article Found.</div>`
   })
 }
@@ -47,6 +48,7 @@ export async function createItemArticle(options: {
   return await createPage(`/wiki/${options.path}`, {
       title: options.title,
       thumbnailImage: options.thumbnail,
+      path: options.path,
       content: html`
         <div class="columns is-desktop">
           <article class="column is-two-thirds">

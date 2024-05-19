@@ -15,6 +15,7 @@ function weaponGridItem(id: string, name: string) {
 export async function createWeaponPages() {
   await createPage(`/special/weapons`, {
     title: "Weapons",
+    path: "/special/weapons",
     content: html`
       ${(await renderMarkdown("weapons.md", {
         replace: [

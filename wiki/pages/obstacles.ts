@@ -7,6 +7,7 @@ import { range } from "util/arrays";
 export async function createObstaclePages() {
   await createPage("/special/obstacles", {
     title: "Obstacles",
+    path: "/special/obstacles",
     content:
       (await renderMarkdown("obstacles.md", {
         replace: [
