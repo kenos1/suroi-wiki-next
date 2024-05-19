@@ -66,6 +66,7 @@ function NavBar() {
               <a class="navbar-item" href="/special/weapons">Weapons</a>
               <a class="navbar-item" href="/special/obstacles">Obstacles</a>
               <a class="navbar-item" href="/special/faq">Frequently Asked Questions</a>
+              <a class="navbar-item" href="/wiki">All Wiki Pages</a>
             </div>
           </div>
         </div>
