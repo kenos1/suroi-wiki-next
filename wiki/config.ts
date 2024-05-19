@@ -1,5 +1,5 @@
 export const Config = {
-  url: "http://localhost:8080",
+  url: "https://kenos1.github.io/suroi-wiki-next",
   disableThumbnails: true
 } as {
   url: string,
