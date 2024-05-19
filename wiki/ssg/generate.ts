@@ -3,6 +3,7 @@ import Path from "path";
 import { WikiLayout, WikiLayoutOptions } from "./layout";
 import { html } from "./util";
 import { createThumbnail } from "./thumbnail";
+import { Config } from "config";
 
 export type Route = {
   title: string;
@@ -24,7 +25,7 @@ export async function createPage(path: string, options: WikiLayoutOptions) {
     url: path,
     thumbnailImage: options.thumbnailImage
   }
-  createThumbnail(route);
+  if (!Config.disableThumbnails) createThumbnail(route);
   routes.push(route);
 }
 
