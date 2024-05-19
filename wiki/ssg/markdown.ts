@@ -48,7 +48,7 @@ export async function createItemArticle(options: {
   return await createPage(`/wiki/${options.path}`, {
       title: options.title,
       thumbnailImage: options.thumbnail,
-      path: options.path,
+      path: `/wiki/${options.path}`,
       content: html`
         <div class="columns is-desktop">
           <article class="column is-two-thirds">
