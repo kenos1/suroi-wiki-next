@@ -20,8 +20,8 @@ export async function WikiLayout(options: WikiLayoutOptions) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:description" content="${options.description ?? ""}" />
         <meta property="og:image" content="${Config.url + options.path}/thumbnail.png" />
-        <link rel="stylesheet" href="/style.css" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="${Config.url}/style.css" />
+        <link rel="icon" type="image/x-icon" href="${Config.url}/favicon.ico" />
         <title>Suroi Wiki | ${options.title}</title>
       </head>
       <body class="theme-dark">
@@ -35,7 +35,7 @@ export async function WikiLayout(options: WikiLayoutOptions) {
           </div>
         </section>
         ${await Footer()}
-        <script src="/main.js"></script>
+        <script src="${Config.url}/main.js"></script>
       </body>
     </html>
   `;
